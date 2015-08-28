@@ -2,7 +2,7 @@
 This is a Backbone supplementary library that enables easier construction of composite views. It allows recursive removal of subviews and pushing subviews into the current element's $el.
 
 ### Site Powered by Fused View ###
-![soundbolt]
+My personal project: [SoundBolt][soundbolt]
 
 [soundbolt]: www.soundbolt.co
 
