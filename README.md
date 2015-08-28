@@ -4,7 +4,7 @@ This is a Backbone supplementary library that enables easier construction of com
 ### Site Powered by Fused View ###
 My personal project: [SoundBolt][soundbolt]
 
-[soundbolt]: www.soundbolt.co
+[soundbolt]: http://www.soundbolt.co
 
 ### How to Use ###
 Download the fused_view.js file and put it in the javascript util folder in your project.
@@ -26,7 +26,7 @@ This will define <code>Backbone.FusedView</code> object on the Backbone namespac
 + <code>View.addComponent</code>: This allows adding a subview to the current View element and automatically renders it.
 + <code>View.fusion</code>: This re-renders all subview and is used primarily for rerendering the composite view.
 + <code>View.remove</code>: This method recursively removes all the subviews attached to the current master view.
-+ <code>emptyComponents</code>: This empties the subviews array.
++ <code>View.emptyComponents</code>: This empties the subviews array.
 
 ### Development Highlights ###
 + Event Delegation: Because the subviews are initiated in the master view, it's important to delegate relevant events to the subviews so they subviews don't lose any clicking features.
