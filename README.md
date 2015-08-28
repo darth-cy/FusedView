@@ -33,17 +33,13 @@ Soundbolt.Views.UserIndex = Backbone.FusedView.extend({
   template: JST['user_index'],
   className: 'user-view-normal-master row',
 
-  events: {
-    "click a#display-my-streams": "displayMyStreams",
-  },
-
   initialize: function(options){
     ... // Initialization utilities.
 
     this.addSideBar();
     this.addStreamTrackField(); // SideBar and TrackField are subviews of UserIndex.
 
-    this.listenTo(this.model, 'sync', this._resetAssets.bind(this));
+    ... // Event Binding
   },
 
   ...
@@ -57,13 +53,7 @@ Soundbolt.Views.UserIndex = Backbone.FusedView.extend({
   },
 
   addStreamTrackField: function(){
-    var tracksFieldView = new Soundbolt.Views.TracksFieldView({
-      users: this.users,
-      user: this.model,
-      tracks: this.streams,
-      own: false
-    });
-
+    var tracksFieldView = new Soundbolt.Views.TracksFieldView();
     this._swapTrackField(tracksFieldView);
   },
 
@@ -74,7 +64,7 @@ Soundbolt.Views.UserIndex = Backbone.FusedView.extend({
     var newDiv = $('<div>').html(content).addClass("container");
     this.$el.html(newDiv);
 
-    this.fusion();  // Use fusion to re-render all subviews.
+    this.fusion();  // Use fusion to re-render all subviews (shovels everything into this.$el).
 
     return this;
   },
