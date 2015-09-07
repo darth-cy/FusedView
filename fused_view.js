@@ -1,15 +1,15 @@
 Backbone.FusedView = Backbone.View.extend({
 
-  addComponent: function(component){
-    this._subComponents().push(component);
-    this._renderComponent(component);
+  addComponent: function(component, selector){
+    this._subComponents().push([component, selector]);
+    this._renderComponent(component, selector);
   },
 
   fusion: function(){
     var fused = this;
 
     fused._subComponents().each(function(comp){
-      fused.addComponent(comp);
+      fused.addComponent(comp[0], comp[1]);
     })
   },
 
@@ -17,21 +17,25 @@ Backbone.FusedView = Backbone.View.extend({
     Backbone.View.prototype.remove.call(this);
 
     this._subComponents().each(function(comp){
-      comp.remove();
+      comp[0].remove();
     });
   },
 
   emptyComponents: function(){
     this._subComponents().each(function(comp){
-      comp.remove();
+      comp[0].remove();
     })
 
     this._allComponents = {};
     return _(this._allComponents);
   },
 
-  _renderComponent: function(component){
-    this.$el.append(component.$el);
+  _renderComponent: function(component, selector){
+    if(selector){
+      this.$el.find(selector).append(component.$el);
+    }else{
+      this.$el.append(component.$el);
+    }
     component.delegateEvents();
     component.render();
 
